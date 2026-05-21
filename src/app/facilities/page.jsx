@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import FacilityCard from "../components/FacilityCard";
 import { FiSearch, FiFilter } from "react-icons/fi";
+import { API_BASE_URL } from "@/lib/apiUrl";
 
 export default function AllFacilitiesPage() {
   // ডাটাবেস থেকে পাওয়া ডাটা রাখার স্টেট
@@ -17,7 +18,7 @@ export default function AllFacilitiesPage() {
       setLoading(true);
       try {
         // ✅ ঠিক করা হয়েছে: সরাসরি ৫০০০ পোর্টে (ব্যাকএন্ডে) রিকোয়েস্ট পাঠানো হচ্ছে
-        const response = await fetch(`http://localhost:5000/api/facilities?search=${encodeURIComponent(searchTerm)}&type=${encodeURIComponent(filterType)}`, {
+        const response = await fetch(`${API_BASE_URL}/api/facilities?search=${encodeURIComponent(searchTerm)}&type=${encodeURIComponent(filterType)}`, {
           cache: "no-store",
         });
         const result = await response.json();

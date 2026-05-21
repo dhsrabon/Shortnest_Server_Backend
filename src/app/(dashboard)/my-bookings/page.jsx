@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRequireAuth } from "../../context/AuthContext";
+import { API_BASE_URL } from "@/lib/apiUrl";
 
 export default function MyBookingsPage() {
   const user = useRequireAuth();
@@ -13,7 +14,7 @@ export default function MyBookingsPage() {
 
     const fetchMyBookings = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/bookings/${user.email}`);
+        const response = await fetch(`${API_BASE_URL}/api/bookings/${user.email}`);
         const result = await response.json();
 
         if (result.success) {
@@ -33,7 +34,7 @@ export default function MyBookingsPage() {
   const handleCancel = async (id) => {
     if (confirm("Are you sure you want to cancel this booking?")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/bookings/${id}`, {
           method: "DELETE",
         });
         const result = await response.json();

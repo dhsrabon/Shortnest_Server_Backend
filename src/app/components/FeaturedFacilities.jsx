@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { API_BASE_URL } from "@/lib/apiUrl";
 
 export default function FeaturedFacilities() {
   const [facilities, setFacilities] = useState([]);
@@ -11,7 +12,7 @@ export default function FeaturedFacilities() {
   useEffect(() => {
     const fetchFacilities = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/facilities");
+        const response = await fetch(`${API_BASE_URL}/api/facilities`);
         const result = await response.json();
         
         if (result.success && result.data) {

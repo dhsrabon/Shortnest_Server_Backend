@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRequireAuth } from "../../context/AuthContext";
+import { API_BASE_URL } from "@/lib/apiUrl";
 
 export default function ManageFacilitiesPage() {
   const user = useRequireAuth();
@@ -14,7 +15,7 @@ export default function ManageFacilitiesPage() {
 
     const fetchMyFacilities = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/facilities/owner/${user.email}`);
+        const response = await fetch(`${API_BASE_URL}/api/facilities/owner/${user.email}`);
         const result = await response.json();
         
         if (result.success) {
@@ -34,7 +35,7 @@ export default function ManageFacilitiesPage() {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to delete this facility? This action cannot be undone.")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/facilities/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/facilities/${id}`, {
           method: "DELETE",
         });
         const result = await response.json();

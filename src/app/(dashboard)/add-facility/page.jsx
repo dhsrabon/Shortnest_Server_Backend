@@ -60,7 +60,7 @@ export default function AddFacilityPage() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/facilities", {
+      const response = await fetch(`${API_BASE_URL}/api/facilities`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

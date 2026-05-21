@@ -15,8 +15,14 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://shortnest-frontend.vercel.app',
+    process.env.FRONTEND_URL || process.env.NEXT_PUBLIC_APP_URL,
+].filter(Boolean);
+
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: allowedOrigins,
     credentials: true // কুকি আদান-প্রদানের জন্য এটি অত্যাবশ্যক
 }));
 app.use(express.json());

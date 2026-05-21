@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { API_BASE_URL } from "@/lib/apiUrl";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -99,7 +100,7 @@ export default function RegisterPage() {
         <div className="mt-4">
           <button
             type="button"
-            onClick={() => window.location.href = "http://localhost:5000/api/auth/google"}
+            onClick={() => window.location.href = `${API_BASE_URL}/api/auth/google`}
             className="w-full inline-flex items-center justify-center gap-2 bg-red-600 text-white font-bold py-3 rounded-md hover:bg-red-700 transition-all duration-300"
           >
             Continue with Google

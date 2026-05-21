@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useRequireAuth } from "../../../../context/AuthContext";
+import { API_BASE_URL } from "@/lib/apiUrl";
 
 export default function EditFacilityPage() {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function EditFacilityPage() {
 
     const fetchFacility = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/facilities/${facilityId}`);
+        const response = await fetch(`${API_BASE_URL}/api/facilities/${facilityId}`);
         const result = await response.json();
         if (result.success && result.data) {
           const facility = result.data;
@@ -74,7 +75,7 @@ export default function EditFacilityPage() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/facilities/${facilityId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/facilities/${facilityId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

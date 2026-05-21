@@ -23,7 +23,7 @@ export default function SeedPage() {
     try {
       // লুপ চালিয়ে একটা একটা করে ডাটাবেসে পাঠানো হচ্ছে
       for (const item of fallbackFacilities) {
-        await fetch("http://localhost:5000/api/facilities", {
+        await fetch(`${API_BASE_URL}/api/facilities`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(item),
